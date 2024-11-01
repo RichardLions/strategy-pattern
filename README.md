@@ -4,9 +4,9 @@ This pattern was inspired by [C++ Software Design - Chapter 5](https://www.oreil
 
 ## When To Use
 
-The Strategy pattern is used to create an extension point on how something is done. This is similar to the Command pattern, however they have a different purpose. Strategy is to change how something is done, Command is more open and can do anything on a type. An example is std::sort(...) uses a Strategy to extend how to sort a collect, whereas std::for_each(...) uses a command to do anything on each item within a collect.
+The Strategy pattern is used to create an extension point on how something is done. This is similar to the Command pattern, however they have a different purpose. Strategy is to change how something is done, Command is more open and can do anything on a type. An example is std::sort(...) uses a Strategy to extend how to sort a collection, whereas std::for_each(...) uses a Command to do anything on each item within a collection.
 
-This pattern is best used when only a small number of functionality needs to be extended. It can become cumbersome to create an extension point on a type for many different pieces of functionality.
+This pattern is best used when only a small number of extension points are needed. It can become cumbersome to create an extension point on a type for many different pieces of functionality.
 
 Strategies can be implemented via inheritance (Reference Semantics), callables (Value Semantics) and templates. Note: The template implementation has the best performance but the Strategy needs to be known at compile which may rule out this option depending on requirements.
 
@@ -35,7 +35,7 @@ public:
 class IntValue final : public Value
 {
 public:
-    using OperationStrategy = OperationStrategy<class IntValue>;
+    using OperationStrategy = OperationStrategy<IntValue>;
 
     explicit IntValue(
         const int32_t value, std::unique_ptr<OperationStrategy>&& operationStrategy)
@@ -66,9 +66,12 @@ public:
 };
 
 {
-    const std::unique_ptr<Value> value{
-        std::make_unique<IntValue>(0, std::make_unique<IncrementIntValueOperationStrategy>()};
-    value->Operation();
+    std::vector<std::unique_ptr<Value>> values{};
+    values.push_back(std::make_unique<IntValue>(0, std::make_unique<IncrementIntValueOperationStrategy>());
+    for(const std::unique_ptr<Value>& value: values)
+    {
+        value->Operation();
+    }
 }
 ```
 
@@ -77,7 +80,7 @@ Callables (Value Semantics):
 class IntValue final : public Value
 {
 public:
-    using OperationStrategy = std::function<void(class IntValue&)>;
+    using OperationStrategy = std::function<void(IntValue&)>;
 
     explicit IntValue(
         const int32_t value, OperationStrategy&& operationStrategy)
@@ -108,8 +111,12 @@ public:
 };
 
 {
-    const std::unique_ptr<Value> value{std::make_unique<IntValue>(0, IncrementIntValueOperationStrategy{})};
-    value->Operation();
+    std::vector<std::unique_ptr<Value>> values{};
+    values.push_back(std::make_unique<IntValue>(0, IncrementIntValueOperationStrategy{}));
+    for(const std::unique_ptr<Value>& value: values)
+    {
+        value->Operation();
+    }
 }
 ```
 
@@ -146,8 +153,12 @@ public:
 };
 
 {
-    const std::unique_ptr<Value> value{std::make_unique<IntValue<IncrementIntValueOperationStrategy>>(0)};
-    value->Operation();
+    std::vector<std::unique_ptr<Value>> values{};
+    values.push_back(std::make_unique<IntValue<IncrementIntValueOperationStrategy>>(0));
+    for(const std::unique_ptr<Value>& value: values)
+    {
+        value->Operation();
+    }
 }
 ```
 

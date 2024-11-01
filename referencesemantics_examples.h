@@ -25,7 +25,7 @@ namespace ReferenceSemantics
     class IntValue final : public Value
     {
     public:
-        using OperationStrategy = OperationStrategy<class IntValue>;
+        using OperationStrategy = OperationStrategy<IntValue>;
 
         explicit IntValue(
             const int32_t value, std::unique_ptr<OperationStrategy>&& operationStrategy)
@@ -73,7 +73,7 @@ namespace ReferenceSemantics
     class FloatValue final : public Value
     {
     public:
-        using OperationStrategy = OperationStrategy<class FloatValue>;
+        using OperationStrategy = OperationStrategy<FloatValue>;
 
         explicit FloatValue(
             const float_t value, std::unique_ptr<OperationStrategy>&& operationStrategy)

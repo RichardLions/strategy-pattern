@@ -18,7 +18,7 @@ namespace ValueSemantics
     class IntValue final : public Value
     {
     public:
-        using OperationStrategy = std::function<void(class IntValue&)>;
+        using OperationStrategy = std::function<void(IntValue&)>;
 
         explicit IntValue(
             const int32_t value, OperationStrategy&& operationStrategy)
@@ -66,7 +66,7 @@ namespace ValueSemantics
     class FloatValue final : public Value
     {
     public:
-        using OperationStrategy = std::function<void(class FloatValue&)>;
+        using OperationStrategy = std::function<void(FloatValue&)>;
 
         explicit FloatValue(
             const float_t value, OperationStrategy&& operationStrategy)
