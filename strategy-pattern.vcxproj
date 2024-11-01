@@ -145,6 +145,11 @@
     <None Include="vcpkg-configuration.json" />
     <None Include="vcpkg.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="referencesemantics_examples.h" />
+    <ClInclude Include="template_examples.h" />
+    <ClInclude Include="valuesemantics_examples.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

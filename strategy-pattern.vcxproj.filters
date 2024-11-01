@@ -31,4 +31,9 @@
       <Filter>Misc</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="referencesemantics_examples.h" />
+    <ClInclude Include="template_examples.h" />
+    <ClInclude Include="valuesemantics_examples.h" />
+  </ItemGroup>
 </Project>

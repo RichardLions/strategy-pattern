@@ -1,8 +1,13 @@
 {
   "dependencies": [
+    "random",
     "catch2"
   ],
   "overrides": [
+    {
+      "name": "random",
+      "version": "0.1.0-testing"
+    },
     {
       "name": "catch2",
       "version": "3.7.1#0"
